@@ -644,7 +644,7 @@ function ProblemSelect({ onSelectProblem, onNavigate }) {
               }}
             />
           </div>
-          <p style={{ fontSize: '1.5rem', color: '#374151', fontWeight: '300' }}>Choose Your Problem</p>
+          <p style={{ fontSize: '2.5rem', color: '#1f2937', fontWeight: 'bold', textShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>Choose Your Problem</p>
         </div>
         
         <div style={styles.grid}>
