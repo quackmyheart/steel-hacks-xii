@@ -2,6 +2,7 @@
 <img width="926" height="619" alt="steelhacksxii_logo" src="https://github.com/user-attachments/assets/486b5f40-19b1-47e7-a73a-b6b78f359648" />
 
 Two players take turns editing one line of code at a time, creating a branching multiverse where the Solver tries to build working solutions while the Saboteur introduces bugs and errors.
+
 ##Turn Structure
 1. Click a node to select it and open the code editor
 2. Edit exactly one line of code in the textarea
