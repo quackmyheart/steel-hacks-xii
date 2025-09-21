@@ -65,7 +65,7 @@ const PROBLEMS = [
   }
 ];
 
-// Styles object to replace Tailwind classes
+// Styles object
 const styles = {
   page: {
     minHeight: '100vh',
@@ -96,17 +96,6 @@ const styles = {
     padding: '2rem',
     maxWidth: '64rem',
     margin: '0 auto'
-  },
-  logoPlaceholder: {
-    width: '24rem',
-    height: '8rem',
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    border: '2px dashed white',
-    borderRadius: '1rem',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '0 auto 1.5rem auto'
   },
   button: {
     padding: '1rem 3rem',
@@ -289,6 +278,334 @@ const CheckeredBackground = () => (
   <div style={styles.checkeredBg} />
 );
 
+// Landing Page Component
+function LandingPage({ onNavigate }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  return (
+    <div style={styles.page}>
+      <CheckeredBackground />
+      
+      <div style={{
+        position: 'relative',
+        zIndex: 10,
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        opacity: isLoaded ? 1 : 0,
+        transform: isLoaded ? 'translateY(0)' : 'translateY(2.5rem)',
+        transition: 'all 1s'
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          
+          {/* Logo */}
+          <div style={{ marginBottom: '3rem' }}>
+            <div style={{
+              width: '57.6rem',
+              height: '28.8rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '2rem'
+            }}>
+              <img 
+                src="/steelhacksxii_logo.png" 
+                alt="SteelHacks XII Logo"
+                style={{
+                  maxWidth: '100%',
+                  maxHeight: '100%',
+                  objectFit: 'contain'
+                }}
+              />
+            </div>
+          </div>
+          
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+            <button 
+              onClick={() => onNavigate('problemSelect')}
+              style={{
+                ...styles.button,
+                boxShadow: '0 4px 15px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.1)'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = 'scale(1.05)';
+                e.target.style.boxShadow = '0 10px 25px rgba(0,0,0,0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = 'scale(1)';
+                e.target.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.1)';
+              }}
+            >
+              <svg 
+                style={{ width: '1.5rem', height: '1.5rem', transition: 'transform 0.2s' }} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <polygon points="5,3 19,12 5,21"></polygon>
+              </svg>
+              ENTER THE MULTIVERSE
+            </button>
+            
+            <button 
+              onClick={() => onNavigate('howToPlay')}
+              style={{
+                padding: '0.5rem 1.5rem',
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                color: '#374151',
+                fontWeight: '500',
+                fontSize: '1rem',
+                borderRadius: '0.5rem',
+                border: '1px solid #d1d5db',
+                cursor: 'pointer',
+                transition: 'all 0.3s',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = 'scale(1.02)';
+                e.target.style.backgroundColor = 'white';
+                e.target.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = 'scale(1)';
+                e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                e.target.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+              }}
+            >
+              How to Play
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// How to Play Page Component
+function HowToPlayPage({ onNavigate }) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setIsVisible(true), 100);
+  }, []);
+
+  return (
+    <div style={styles.page}>
+      <CheckeredBackground />
+      
+      <div style={{
+        ...styles.container,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(1rem)',
+        transition: 'all 0.7s'
+      }}>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <div style={{ marginBottom: '2rem' }}>
+            <div style={{
+              width: '24rem',
+              height: '8rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '0 auto'
+            }}>
+              <img 
+                src="/steelhacksxii_logo_side.png" 
+                alt="SteelHacks XII Logo"
+                style={{
+                  maxWidth: '100%',
+                  maxHeight: '100%',
+                  objectFit: 'contain'
+                }}
+              />
+            </div>
+          </div>
+        </div>
+        
+        <div style={{
+          backgroundColor: 'white',
+          borderRadius: '1rem',
+          padding: '2rem',
+          border: '1px solid #e5e7eb',
+          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+          maxWidth: '800px',
+          margin: '0 auto'
+        }}>
+          
+          <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
+            <p style={{ 
+              fontSize: '1.125rem', 
+              color: '#374151', 
+              lineHeight: '1.6',
+              fontWeight: '500'
+            }}>
+              <strong>Two players take turns editing one line of code at a time, creating a branching multiverse where the Solver tries to build working solutions while the Saboteur introduces bugs and errors.</strong>
+            </p>
+          </div>
+
+          <div style={{ marginBottom: '2rem' }}>
+            <h3 style={{ 
+              fontSize: '1.5rem', 
+              fontWeight: 'bold', 
+              color: '#1f2937', 
+              marginBottom: '1rem',
+              borderBottom: '2px solid #e5e7eb',
+              paddingBottom: '0.5rem'
+            }}>
+              Turn Structure
+            </h3>
+            
+            <div style={{ paddingLeft: '1rem' }}>
+              <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                <span style={{ 
+                  backgroundColor: '#10b981', 
+                  color: 'white', 
+                  borderRadius: '50%', 
+                  width: '1.5rem', 
+                  height: '1.5rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.875rem',
+                  fontWeight: 'bold',
+                  flexShrink: 0,
+                  marginTop: '0.125rem'
+                }}>1</span>
+                <p style={{ fontSize: '1rem', color: '#374151', margin: 0 }}>
+                  <strong>Click a node</strong> to select it and open the code editor
+                </p>
+              </div>
+              
+              <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                <span style={{ 
+                  backgroundColor: '#10b981', 
+                  color: 'white', 
+                  borderRadius: '50%', 
+                  width: '1.5rem', 
+                  height: '1.5rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.875rem',
+                  fontWeight: 'bold',
+                  flexShrink: 0,
+                  marginTop: '0.125rem'
+                }}>2</span>
+                <p style={{ fontSize: '1rem', color: '#374151', margin: 0 }}>
+                  <strong>Edit exactly one line</strong> of code in the textarea
+                </p>
+              </div>
+              
+              <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                <span style={{ 
+                  backgroundColor: '#10b981', 
+                  color: 'white', 
+                  borderRadius: '50%', 
+                  width: '1.5rem', 
+                  height: '1.5rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.875rem',
+                  fontWeight: 'bold',
+                  flexShrink: 0,
+                  marginTop: '0.125rem'
+                }}>3</span>
+                <p style={{ fontSize: '1rem', color: '#374151', margin: 0 }}>
+                  <strong>Click "COMMIT MOVE"</strong> to save your changes and create a new timeline node
+                </p>
+              </div>
+              
+              <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                <span style={{ 
+                  backgroundColor: '#10b981', 
+                  color: 'white', 
+                  borderRadius: '50%', 
+                  width: '1.5rem', 
+                  height: '1.5rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '0.875rem',
+                  fontWeight: 'bold',
+                  flexShrink: 0,
+                  marginTop: '0.125rem'
+                }}>4</span>
+                <p style={{ fontSize: '1rem', color: '#374151', margin: 0 }}>
+                  <strong>Turn switches</strong> to the other player automatically
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ marginBottom: '2rem' }}>
+            <h3 style={{ 
+              fontSize: '1.5rem', 
+              fontWeight: 'bold', 
+              color: '#1f2937', 
+              marginBottom: '1rem',
+              borderBottom: '2px solid #e5e7eb',
+              paddingBottom: '0.5rem'
+            }}>
+              Key Rules
+            </h3>
+            
+            <div style={{ paddingLeft: '1rem' }}>
+              <div style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                <span style={{ color: '#10b981', fontSize: '1.25rem', fontWeight: 'bold', flexShrink: 0 }}>•</span>
+                <p style={{ fontSize: '1rem', color: '#374151', margin: 0 }}>
+                  <strong>One line per turn</strong>: You can only modify one line of code per move
+                </p>
+              </div>
+              
+              <div style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                <span style={{ color: '#10b981', fontSize: '1.25rem', fontWeight: 'bold', flexShrink: 0 }}>•</span>
+                <p style={{ fontSize: '1rem', color: '#374151', margin: 0 }}>
+                  <strong>Must make a change</strong>: Empty commits are not allowed
+                </p>
+              </div>
+              
+              <div style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                <span style={{ color: '#10b981', fontSize: '1.25rem', fontWeight: 'bold', flexShrink: 0 }}>•</span>
+                <p style={{ fontSize: '1rem', color: '#374151', margin: 0 }}>
+                  <strong>Node selection</strong>: Click any existing node to branch from that point
+                </p>
+              </div>
+              
+              <div style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                <span style={{ color: '#10b981', fontSize: '1.25rem', fontWeight: 'bold', flexShrink: 0 }}>•</span>
+                <p style={{ fontSize: '1rem', color: '#374151', margin: 0 }}>
+                  <strong>Timeline creation</strong>: Each move creates a new node connected to the parent
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+          <button 
+            onClick={() => onNavigate('landing')}
+            style={{
+              ...styles.button,
+              padding: '0.75rem 1.5rem',
+              fontSize: '1rem'
+            }}
+            onMouseEnter={(e) => e.target.style.backgroundColor = '#f9fafb'}
+            onMouseLeave={(e) => e.target.style.backgroundColor = 'white'}
+          >
+            ← Back to Landing
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Problem Selection Screen
 function ProblemSelect({ onSelectProblem, onNavigate }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -307,26 +624,25 @@ function ProblemSelect({ onSelectProblem, onNavigate }) {
         transform: isVisible ? 'translateY(0)' : 'translateY(1rem)',
         transition: 'all 0.7s'
       }}>
+        {/* Logo at the top */}
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <div style={{ marginBottom: '1.5rem' }}>
-            <div style={{
-              width: '24rem',
-              height: '8rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              margin: '0 auto 1.5rem auto'
-            }}>
-              <img 
-                src="/steelhacksxii_logo_side.png" 
-                alt="SteelHacks XII Logo"
-                style={{
-                  maxWidth: '100%',
-                  maxHeight: '100%',
-                  objectFit: 'contain'
-                }}
-              />
-            </div>
+          <div style={{
+            width: '24rem',
+            height: '8rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 2rem auto'
+          }}>
+            <img 
+              src="/steelhacksxii_logo_side.png" 
+              alt="SteelHacks XII Logo"
+              style={{
+                maxWidth: '100%',
+                maxHeight: '100%',
+                objectFit: 'contain'
+              }}
+            />
           </div>
           <p style={{ fontSize: '1.5rem', color: '#374151', fontWeight: '300' }}>Choose Your Problem</p>
         </div>
@@ -610,12 +926,6 @@ function GameBoard({ problem, onBack }) {
       }
     }
     
-    // Validation rules:
-    // 1. Can add exactly 1 line (and no other changes)
-    // 2. Can remove content from exactly 1 line (and no other changes)
-    // 3. Can modify exactly 1 line (when line count stays same)
-    // 4. Cannot do multiple operations at once
-    
     const totalChanges = (linesAdded > 0 ? 1 : 0) + (linesRemoved > 0 ? 1 : 0) + (linesModified > 0 ? 1 : 0);
     
     if (totalChanges === 0) {
@@ -701,7 +1011,7 @@ function GameBoard({ problem, onBack }) {
       <div style={styles.gameContainer}>
         {/* Header */}
         <div style={styles.header}>
-          <div style={styles.headerContent}>
+          <div style={{...styles.headerContent, position: 'relative'}}>
             <button 
               onClick={onBack}
               style={{
@@ -711,17 +1021,42 @@ function GameBoard({ problem, onBack }) {
                 borderRadius: '0.5rem',
                 border: 'none',
                 cursor: 'pointer',
-                fontWeight: '500'
+                fontWeight: '500',
+                zIndex: 10
               }}
             >
               ← Back to Problems
             </button>
             
+            {/* Logo fixed in center */}
+            <div style={{
+              position: 'absolute',
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
+              height: '9rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 5
+            }}>
+              <img 
+                src="/steelhacksxii_logo_side.png" 
+                alt="SteelHacks XII Logo"
+                style={{
+                  maxHeight: '100%',
+                  maxWidth: '600px',
+                  objectFit: 'contain'
+                }}
+              />
+            </div>
+            
             <div style={{
               ...styles.playerIndicator,
               borderColor: gameState.currentPlayer === PLAYER_TYPES.SOLVER ? '#10b981' : '#ef4444',
               backgroundColor: gameState.currentPlayer === PLAYER_TYPES.SOLVER ? '#ecfdf5' : '#fef2f2',
-              color: gameState.currentPlayer === PLAYER_TYPES.SOLVER ? '#065f46' : '#991b1b'
+              color: gameState.currentPlayer === PLAYER_TYPES.SOLVER ? '#065f46' : '#991b1b',
+              zIndex: 10
             }}>
               <div style={{ fontSize: '0.875rem', fontWeight: '500', textTransform: 'uppercase', opacity: 0.8 }}>
                 Now Playing
@@ -849,27 +1184,6 @@ function GameBoard({ problem, onBack }) {
                     }}
                     onClick={() => selectNode(node.id)}
                   >
-                    {/* Status indicator */}
-                    <div style={{
-                      ...styles.statusIndicator,
-                      backgroundColor: getStatusColor(node.status)
-                    }}>
-                      {node.status === NODE_STATUS.PASS ? '✓' : 
-                       node.status === NODE_STATUS.FAIL ? '✗' : 
-                       node.status === NODE_STATUS.RUNTIME ? '!' : 
-                       node.status === NODE_STATUS.PARTIAL ? '~' : '?'}
-                    </div>
-
-                    {/* Player indicator */}
-                    {node.createdBy !== 'SYSTEM' && (
-                      <div style={{
-                        ...styles.playerBadge,
-                        backgroundColor: node.createdBy === PLAYER_TYPES.SOLVER ? '#10b981' : '#ef4444'
-                      }}>
-                        {node.createdBy === PLAYER_TYPES.SOLVER ? 'S' : 'X'}
-                      </div>
-                    )}
-
                     {/* Code preview */}
                     <div style={{ padding: '0.5rem', height: '100%', overflow: 'hidden' }}>
                       <div style={{ 
@@ -937,7 +1251,7 @@ function GameBoard({ problem, onBack }) {
                   onMouseEnter={(e) => e.target.style.backgroundColor = '#374151'}
                   onMouseLeave={(e) => e.target.style.backgroundColor = 'black'}
                 >
-                  🚀 COMMIT MOVE
+                  COMMIT MOVE
                 </button>
                 
                 <div style={{ flex: 1, minHeight: 0 }}>
@@ -961,90 +1275,11 @@ function GameBoard({ problem, onBack }) {
             ) : (
               <div style={styles.placeholder}>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '1.125rem', marginBottom: '0.5rem' }}>📝</div>
                   <div style={{ fontSize: '0.875rem', fontWeight: '500' }}>Click a node to edit code</div>
                 </div>
               </div>
             )}
           </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Landing Page Component
-function LandingPage({ onNavigate }) {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
-
-  return (
-    <div style={styles.page}>
-      <CheckeredBackground />
-      
-      <div style={{
-        position: 'relative',
-        zIndex: 10,
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        opacity: isLoaded ? 1 : 0,
-        transform: isLoaded ? 'translateY(0)' : 'translateY(2.5rem)',
-        transition: 'all 1s'
-      }}>
-        <div style={{ textAlign: 'center' }}>
-          
-          {/* Logo */}
-          <div style={{ marginBottom: '3rem' }}>
-            <div style={{
-              width: '72rem',
-              height: '36rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '2rem'
-            }}>
-              <img 
-                src="/steelhacksxii_logo.png" 
-                alt="SteelHacks XII Logo"
-                style={{
-                  maxWidth: '100%',
-                  maxHeight: '100%',
-                  objectFit: 'contain'
-                }}
-              />
-            </div>
-          </div>
-          
-          <button 
-            onClick={() => onNavigate('problemSelect')}
-            style={{
-              ...styles.button,
-              boxShadow: '0 4px 15px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.1)'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = 'scale(1.05)';
-              e.target.style.boxShadow = '0 10px 25px rgba(0,0,0,0.2)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = 'scale(1)';
-              e.target.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.1)';
-            }}
-          >
-            <svg 
-              style={{ width: '1.5rem', height: '1.5rem', transition: 'transform 0.2s' }} 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <polygon points="5,3 19,12 5,21"></polygon>
-            </svg>
-            ENTER THE MULTIVERSE
-          </button>
         </div>
       </div>
     </div>
@@ -1069,6 +1304,8 @@ export default function App() {
     switch (currentScreen) {
       case 'landing':
         return <LandingPage onNavigate={navigate} />;
+      case 'howToPlay':
+        return <HowToPlayPage onNavigate={navigate} />;
       case 'problemSelect':
         return <ProblemSelect onSelectProblem={selectProblem} onNavigate={navigate} />;
       case 'gameBoard':
